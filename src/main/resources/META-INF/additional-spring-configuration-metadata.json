@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "zookeeper.monitor.connect-string",
+    "type": "java.lang.String",
+    "description": "A description for 'zookeeper.monitor.connect-string'"
+  },
+  {
+    "name": "servers",
+    "type": "java.lang.String",
+    "description": "A description for 'servers'"
+  },
+  {
+    "name": "utouu.servers",
+    "type": "java.lang.String",
+    "description": "A description for 'utouu.servers'"
+  },
+  {
+    "name": "zookeeper.servers",
+    "type": "java.lang.String",
+    "description": "A description for 'zookeeper.servers'"
+  }
+]}

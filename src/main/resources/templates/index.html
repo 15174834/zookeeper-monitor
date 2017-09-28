@@ -1,0 +1,110 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>SZZC ZooKeeper Monitor</title>
+<link type="text/css" rel="stylesheet" href="/css/monitor.css" />
+<style type="text/css">
+ul
+{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+</style>
+</head>
+<body>
+<div class="nav">
+	<div class="nav-brand"><img style="height: 60px" src="/images/zookeeper_small.gif"/> SZZC ZooKeeper Monitor </div>
+</div>
+	<div class="container"><div class="title"><a href="">刷新</a></div></div>
+    <div th:if="${hosts} != null" class="container"> 
+        <div class="title">状态信息 </div>
+        <div class="line"></div>
+        <table>
+        	<thead>
+	        	<tr>
+			      <th>集群</th>
+			      <th>延迟（最小/,平均/最大</th>
+			      <th>节点数</th>
+			      <th>连接数</th>
+			      <th>模式</th>
+<!-- 			      <th>ZooKeeper版本</th> -->
+			    </tr>
+        	</thead>
+            <tbody class="table-body">
+				<tr th:each="item : ${hosts}">
+                    <td th:text="${item.host+':'+item.port}" class="text-center"></td>
+                    <td th:text="${item.stat.latency}" class="text-center"></td>
+                    <td th:text="${item.stat.nodeCount}" class="text-center"></td>
+                    <td th:text="${item.stat.Connections}" class="text-center"></td>
+                    <td th:text="${item.stat.Mode}" class="text-center"></td>
+<!--                     <td th:text="${item.stat.version}"></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="container" th:if="${nods} != null" id="nods-region"> 
+        <div class="title">节点信息 <span th:text="${path}"></span></div>
+        <div class="line"></div>
+        <div th:each="item : ${nods}">
+            <div class="node"  th:attr="path = ${path + '/' + item}"><span class="operator">＋ </span><span th:text="${item}"></span></div>
+            <div class="child-node" id="child-node"></div>
+        </div>
+    </div>
+    
+    <div class="container" th:if="${hosts} != null">
+    	<ul th:each="item : ${hosts}">
+			<li style="border-bottom: 3px dashed black; margin: 10px 0px">  	
+		        <div class="title" th:text="${'连接信息（' + item.host+':'+item.port+'）'}"> </div>
+		        <div class="line"></div>
+		        <table>
+		            <thead class="table-header">
+		                <tr>
+		                    <th>客户端<span th:text="${'（' + item.stat.Connections + '）'}"></span></th>
+		                    <th>队列</th>
+		                    <th>接收<span th:text="${'（' + item.stat.Received + '）'}"></span></th>
+		                    <th>发送<span th:text="${'（' + item.stat.Sent + '）'}"></span></th>
+		                </tr>
+		            </thead>
+		            <tbody class="table-body">
+		                <tr th:each="itemStat : ${item.stat.Clients}">
+		                    <td th:text="${itemStat.client + '【' + itemStat.hostname + '】'}"></td>
+		                    <td th:text="${itemStat.queued}" class="text-right"></td>
+		                    <td th:text="${itemStat.recved}" class="text-right"></td>
+		                    <td th:text="${itemStat.sent}" class="text-right"></td>  
+		                </tr>
+		            </tbody>
+		        </table>
+        	</li>  
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
+<script type="text/javascript">
+  	$(document).ready(function(){
+      	$('#nods-region').on('click', '.node', function() {
+        	var _this = $(this);
+      		var path = _this.attr('path');
+        	var childNodes = _this.next();
+      		var toggled =  _this.prop('toggled');
+      		_this.prop('toggled', !toggled);
+      		childNodes.empty();
+      		if(toggled) {
+      			_this.children('.operator').first().text('＋ ');
+      		} else {
+      			_this.children('.operator').first().text('－ ');
+      			$.getJSON('/path' + path, function(data){ 
+              		if(data.code == 0) {
+                		$.each(data.nods, function(index, node) {
+                  			var nodeHtml = $('<div class="node" path="' + data.path + '/' + node + '"><span class="operator">＋ </span><span>' + node + '</span></div><div id="child-node" class="child-node"></div>');
+                			childNodes.append(nodeHtml);
+                		});
+              		}
+              	}); 
+      		}
+      	});
+  	});
+</script>
+</html>

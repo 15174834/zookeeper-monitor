@@ -1,0 +1,50 @@
+#EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server:
+  port: 40010
+  tomcat: 
+    max-threads: 10 
+
+logging: 
+  config: classpath:logback.xml
+  
+spring: 
+  thymeleaf: 
+    cache: false
+  profiles: 
+    active: development
+    
+security: 
+  basic: 
+    enabled: true
+  user: 
+    name: root
+    password: 123456
+  ignored: /health,/refresh,/bus/refresh,/info
+  
+
+
+
+---
+spring:
+  profiles: development
+zookeeper: 
+  servers: 130.252.100.20:2181
+
+servers: 
+  - '130.252.100.20,dev'
+  - '130.252.100.21,test'
+  - '130.252.101.105,卢衡'
+  - '127.0.0.1,本地'
+  
+---
+spring:
+  profiles: production
+zookeeper: 
+  servers: s1.zk.51szzc.com:2181,s2.zk.51szzc.com:2181,s3.zk.51szzc.com:2181
+
+
+servers: 
+  - '172.16.100.61,Nginx'
+  - '172.16.100.73,Windows跳板机'
+  - '127.0.0.1,本地'
+     
