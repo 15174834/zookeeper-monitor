@@ -3,12 +3,13 @@ package me.doubbo.zookeeper.monitor.response;
 import java.util.Map;
 import java.util.TreeSet;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 import me.doubbo.zookeeper.monitor.response.StatResponse.Client;
 
 public class StatResponseParser extends ResponseParser {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void parseLine(String line) {
 		if (line.startsWith(" /")) {
@@ -21,7 +22,7 @@ public class StatResponseParser extends ResponseParser {
 			String client = line.substring(0, line.lastIndexOf("]") + 1);
 			items.put("client", client);
 			String name =  servers.get(client.substring(client.indexOf("/") + 1, client.indexOf(":")));
-			items.put("hostname", StringUtils.isNotEmpty(name) ? name : "未知");
+			items.put("hostname", !StringUtils.isEmpty(name) ? name : "未知");
 			String clientInfo = line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"));
 			String[] infoItems = clientInfo.split(",");
 			for (String infoItem : infoItems) {

@@ -2,7 +2,7 @@ package me.doubbo.zookeeper.monitor.response;
 
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 import me.doubbo.zookeeper.monitor.host.ZookeeperCommand;
 
@@ -46,7 +46,7 @@ public abstract class ResponseParser {
 		String[] lines = lines(response);
 		if (lines != null) {
 			for (String line : lines) {
-				if (!StringUtils.isBlank(line)) {
+				if (!StringUtils.isEmpty(line)) {
 					parseLine(line);
 				}
 			}

@@ -9,37 +9,12 @@ import org.apache.commons.io.IOUtils;
 import me.doubbo.zookeeper.monitor.response.MonitorResponse;
 import me.doubbo.zookeeper.monitor.response.ResponseParser;
 
-public class ZKHost {
+public class MyServers {
+
 	private String host;
 	private int port;
-	private MonitorResponse stat;
 
-	public MonitorResponse getStat() {
-		return stat;
-	}
-
-	public void setStat(MonitorResponse stat) {
-		this.stat = stat;
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
-	public ZKHost(String host, int port) {
-		super();
+	public MyServers(String host, int port) {
 		this.host = host;
 		this.port = port;
 	}
