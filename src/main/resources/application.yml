@@ -40,11 +40,11 @@ servers:
 spring:
   profiles: production
 zookeeper: 
-  servers: s1.zk.51szzc.com:2181,s2.zk.51szzc.com:2181,s3.zk.51szzc.com:2181
+  servers: 172.27.232.75:2181
 
 
 servers: 
-  - '172.16.100.61,Nginx'
-  - '172.16.100.73,Windows跳板机'
+  - '172.27.232.76,Nginx'
+  - '172.27.232.73,Windows跳板机'
   - '127.0.0.1,本地'
      
