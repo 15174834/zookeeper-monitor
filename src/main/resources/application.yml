@@ -66,4 +66,5 @@ servers:
   - '172.27.232.102,web-s2-th'
   - '172.27.232.103,provider-s1-th'
   - '172.27.232.105,task-s1-th'
+  - '172.27.232.99,java-wallet-th'
      
