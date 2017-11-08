@@ -50,3 +50,20 @@ servers:
   - '172.27.232.79,passport-s1'
   - '172.27.232.85,passport-s2'
      
+     
+---
+spring:
+  profiles: proth
+zookeeper: 
+  servers: s1.zk.icoin66.in.th:2181
+
+
+servers: 
+  - '172.27.232.98,Nginx-th'
+  - '172.27.232.73,Windows跳板机'
+  - '127.0.0.1,本地'
+  - '172.27.232.101,web-s1-th'
+  - '172.27.232.102,web-s2-th'
+  - '172.27.232.103,provider-s1-th'
+  - '172.27.232.105,task-s1-th'
+     
