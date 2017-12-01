@@ -39,11 +39,11 @@
 		</developer>
 	</developers>
 
-	<repositories>
+		<repositories>
 		<repository>
 			<id>public</id>
 			<name>Public Repositories</name>
-			<url>http://nexus.douboo.me/repository/public/</url>
+			<url>http://nexus.douboo.me/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -57,7 +57,7 @@
 		<pluginRepository>
 			<id>public</id>
 			<name>Public Repositories</name>
-			<url>http://nexus.douboo.me/repository/public/</url>
+			<url>http://nexus.douboo.me/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -66,7 +66,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
 
 	<dependencies>
 		<dependency>
