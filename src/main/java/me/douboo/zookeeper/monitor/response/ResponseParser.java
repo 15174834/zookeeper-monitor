@@ -1,10 +1,10 @@
-package me.doubbo.zookeeper.monitor.response;
+package me.douboo.zookeeper.monitor.response;
 
 import java.util.Map;
 
 import org.springframework.util.StringUtils;
 
-import me.doubbo.zookeeper.monitor.host.ZookeeperCommand;
+import me.douboo.zookeeper.monitor.host.ZookeeperCommand;
 
 public abstract class ResponseParser {
 	protected MonitorResponse result;
