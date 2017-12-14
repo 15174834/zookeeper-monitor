@@ -39,7 +39,7 @@
 		</developer>
 	</developers>
 
-		<repositories>
+	<repositories>
 		<repository>
 			<id>public</id>
 			<name>Public Repositories</name>
