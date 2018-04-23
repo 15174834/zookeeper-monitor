@@ -40,7 +40,7 @@ servers:
 spring:
   profiles: production
 zookeeper: 
-  servers: 172.27.232.75:2181
+  servers: s1.zk.icoinbay.com:2181
 
 
 servers: 
