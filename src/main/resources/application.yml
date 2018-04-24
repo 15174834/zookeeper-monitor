@@ -55,7 +55,7 @@ servers:
 spring:
   profiles: proth
 zookeeper: 
-  servers: 172.27.232.96:2181
+  servers: s1.zk.icoin.in.th:2181
 
 
 servers: 
