@@ -28,12 +28,9 @@ security:
 spring:
   profiles: development
 zookeeper: 
-  servers: 130.252.100.20:2181
+  servers: localhost:2181
 
 servers: 
-  - '130.252.100.20,dev'
-  - '130.252.100.21,test'
-  - '130.252.101.105,卢衡'
   - '127.0.0.1,本地'
   
 ---
